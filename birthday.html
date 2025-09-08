@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Didi🎉</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&family=Dancing+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --baby-pink: #ffd6e8;
+      --light-blue: #d6f0ff;
+      --pearl: #fff8f2;
+      --lavender: #e9d7ff;
+      --gold: #ffd166;
+      --deep: #2b065a;
+      --glass: rgba(255,255,255,0.55);
+      --accent: #ff8fb1;
+      --glow: rgba(255,143,177,0.25);
+      --max-width: 1100px;
+    }
+
+    *{box-sizing: border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{
+      background: radial-gradient(1200px 600px at 10% 10%,var(--baby-pink), transparent 20%),
+                  radial-gradient(900px 500px at 90% 90%,var(--light-blue), transparent 18%),
+                  linear-gradient(180deg,var(--pearl), #fff 40%);
+      color: #28123b;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;justify-content:center;align-items:flex-start;
+    }
+
+    .card{
+      width:100%;max-width:var(--max-width);background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.65));
+      border-radius:24px;padding:28px;box-shadow:0 10px 30px rgba(43,6,90,0.08), 0 2px 6px rgba(0,0,0,0.06);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
+    }
+    .logo{
+      display:flex;gap:14px;align-items:center
+    }
+    .logo .badge{
+      width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--light-blue));
+      display:flex;align-items:center;justify-content:center;font-size:28px;color:white;box-shadow:0 6px 22px rgba(255,143,177,0.2);
+      font-weight:800;font-family:'Great Vibes',cursive
+    }
+    h1.app-title{font-family:'Dancing Script',cursive;margin:0;font-size:22px;color:#3a0a4b}
+
+    nav .nav-buttons{display:flex;gap:10px}
+    .nav-buttons button{
+      background:transparent;border:2px solid rgba(43,6,90,0.06);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600;
+      box-shadow:0 6px 14px rgba(43,6,90,0.04);
+      transition:all .25s ease;font-family:'Montserrat',sans-serif
+    }
+    .nav-buttons button:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(43,6,90,0.06)}
+    .nav-buttons button.active{background:linear-gradient(90deg,var(--accent),var(--lavender));color:white;border-color:transparent}
+
+    /* layout */
+    .container{
+      display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start
+    }
+
+    /* sidebar pages list */
+    .pages{
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));border-radius:16px;padding:18px;height:720px;overflow:auto;
+      border:1px solid rgba(255,255,255,0.5)
+    }
+    .pages h2{font-size:18px;margin:0 0 12px 0;color:#42103f;font-family:'Montserrat',sans-serif}
+    .page-item{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:12px;margin-bottom:8px;cursor:pointer}
+    .page-item button{padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--baby-pink),var(--light-blue));cursor:pointer;border:none;font-weight:600}
+    .page-item .title{font-weight:600}
+
+    /* main page area */
+    .main{
+      min-height:720px;background:linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.45));border-radius:16px;padding:20px;position:relative;overflow:hidden
+    }
+
+    /* Each page section */
+    .page{display:none;opacity:0;transform:translateY(8px);transition:all .45s cubic-bezier(.2,.9,.25,1)}
+    .page.active{display:block;opacity:1;transform:none}
+
+    /* Page 1 - GrandWish */
+    .wish{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:18px;text-align:center;padding:36px
+    }
+    .wish h2{font-family:'Great Vibes',cursive;font-size:72px;margin:0;color:var(--deep);text-shadow:0 6px 18px var(--glow)}
+    .wish p.lead{font-size:18px;margin:0;max-width:800px}
+    .sparkles{position:absolute;left:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.1));filter:blur(22px);opacity:.6;pointer-events:none}
+
+    /* gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+    .photo{border-radius:12px;overflow:hidden;height:140px;position:relative;box-shadow:0 8px 18px rgba(43,6,90,0.06)}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}
+
+    .emoji-strip{font-size:34px}
+
+    /* lovely notes page */
+    .notes{display:flex;flex-direction:column;gap:12px}
+    .note{background:linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.5));padding:12px;border-radius:12px;border:1px solid rgba(43,6,90,0.03)}
+    .note h3{margin:0 0 6px 0;font-family:'Montserrat',sans-serif}
+    .note p{margin:0}
+
+    /* memories / timeline */
+    .timeline{display:flex;flex-direction:column;gap:16px}
+    .event{display:flex;gap:12px;align-items:flex-start}
+    .event .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);margin-top:6px}
+    .event .body{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));padding:10px;border-radius:10px}
+
+    /* fun section */
+    .fun-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .card-fun{padding:18px;border-radius:12px;background:linear-gradient(120deg,var(--lavender),var(--baby-pink));min-height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+
+    /* final page with glitter canvas */
+    .final-cta{display:flex;flex-direction:column;align-items:center;gap:16px;padding:26px}
+    #sparkleCanvas{width:100%;height:360px;border-radius:12px;background:linear-gradient(180deg,var(--light-blue),var(--baby-pink));display:block}
+    .glitter-btn{
+      padding:12px 18px;border-radius:999px;background:linear-gradient(90deg,var(--gold),var(--accent));border:none;cursor:pointer;font-weight:700;box-shadow:0 10px 30px rgba(255,209,102,0.12)
+    }
+
+    footer{margin-top:18px;text-align:center;color:#5b2b59}
+
+    /* responsive small screens */
+    @media (max-width:880px){
+      .container{grid-template-columns:1fr;}
+      .pages{height:auto}
+      .main{min-height:640px}
+      header{flex-direction:column;gap:12px}
+      .nav-buttons{flex-wrap:wrap}
+    }
+
+    /* small playful animations */
+    .floating-heart{position:absolute;filter:drop-shadow(0 6px 16px rgba(255,0,120,0.14));animation:floatUp 5s infinite}
+    @keyframes floatUp{0%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-8px) rotate(6deg)}100%{transform:translateY(0) rotate(-8deg)}}
+
+    /* modal styles */
+    .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:24px;z-index:1200}
+    .modal-backdrop.open{display:flex}
+    .modal-inner{max-width:900px;width:100%;border-radius:12px;overflow:hidden;background:white;padding:12px;position:relative}
+    .modal-inner img{width:100%;height:500px;object-fit:cover;display:block;border-radius:8px}
+    .close-btn{position:absolute;right:10px;top:10px;padding:8px;border-radius:8px;border:none;cursor:pointer;background:transparent;font-size:18px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <div class="logo">
+        <div class="badge">🎂</div>
+        <div>
+          <h1 class="app-title">Happy Birthday Bilei</h1>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-buttons" role="tablist" aria-label="Pages">
+          <button data-target="page-1" class="active">Home</button>
+          <button data-target="page-2">Gallery</button>
+          <button data-target="page-3">Lovely Notes</button>
+          <button data-target="page-4">Memories</button>
+          <button data-target="page-5">Fun & Games</button>
+          <button data-target="page-6">Glitter Finale</button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <!-- sidebar with quick page links -->
+      <aside class="pages" aria-label="Sidebar pages">
+        <h2>Pages</h2>
+        <div class="page-item"><div class="title">1. Grand Wish</div><div><button data-target="page-1">Open</button></div></div>
+        <div class="page-item"><div class="title">2. Photo Gallery</div><div><button data-target="page-2">Open</button></div></div>
+        <div class="page-item"><div class="title">3. Lovely Notes</div><div><button data-target="page-3">Open</button></div></div>
+        <div class="page-item"><div class="title">4. Memories</div><div><button data-target="page-4">Open</button></div></div>
+        <div class="page-item"><div class="title">5. Fun & Games</div><div><button data-target="page-5">Open</button></div></div>
+        <div class="page-item"><div class="title">6. Glitter Finale</div><div><button data-target="page-6">Open</button></div></div>
+
+        <hr style="border:none;border-top:1px solid rgba(43,6,90,0.04);margin:14px 0">
+      </aside>
+
+      <main class="main" role="main">
+        <!-- Page 1 -->
+        <section id="page-1" class="page active" aria-labelledby="home-title">
+          <div class="wish">
+            <div class="sparkles"></div>
+            <h2 id="home-title">Happy Birthday Didi 🎉</h2>
+            <p class="lead">Happy Birthday to my dearest sister 🎉💖 You’re not just my sister but also my best friend,  and my biggest blessing. I’m so lucky to have you in my life. May your day be filled with love, laughter, and all the happiness you deserve. Love you always!❤️😊🐱</p>
+            <div style="display:flex;gap:12px;align-items:center">
+              <button class="glitter-btn" data-target="page-6">Sprinkle some love</button>
+              <button id="seePhotosFromWish" class="glitter-btn" style="background:linear-gradient(90deg,var(--accent),var(--lavender));">See Photos</button>
+            </div>
+            <div style="margin-top:8px;font-size:20px" class="emoji-strip">🎂 🎈 🌸 🌟 💖</div>
+          </div>
+        </section>
+
+        <!-- Page 2 - Gallery -->
+        <section id="page-2" class="page" aria-labelledby="gallery-title">
+          <h2 id="gallery-title" style="margin-top:0;font-family:'Great Vibes',cursive;font-size:40px">Gallery 📸</h2>
+          <div class="gallery-grid" style="margin-top:12px">
+            <div class="photo"><img src="Image 1.jpg" alt="photo 1"></div>
+            <div class="photo"><img src="Image 6.png" alt="photo 2"></div>
+            <div class="photo"><img src="Image 3.jpg" alt="photo 3"></div>
+            <div class="photo"><img src="Image 4.jpg" alt="photo 4"></div>
+            <div class="photo"><img src="Image 5.png" alt="photo 5"></div>
+            <div class="photo"><img src="Image 2.jpg" alt="photo 6"></div>
+          </div>
+
+          <!-- modal for image enlarge -->
+          <div id="imgModal" class="modal-backdrop" aria-hidden="true">
+            <div class="modal-inner">
+              <button id="closeModalBtn" class="close-btn" aria-label="Close image">✕</button>
+              <img id="modalImg" src="" alt="enlarged" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Page 3 - Lovely Notes -->
+        <section id="page-3" class="page" aria-labelledby="notes-title">
+          <h2 id="notes-title" style="font-family:'Great Vibes',cursive;font-size:36px;margin-top:0">Lovely Notes💌 for 🐱😺</h2>
+          <p>Sweet little notes from family for Billei😺🐱</p>
+          <div class="notes" style="margin-top:12px">
+            <div class="note"><h3>From Bhai</h3><p>Dear Didi, on your special day, I just want you to know how much you mean to me. You’ve been my guiding light, my partner in mischief, and my biggest ARGUMENTATIVE🐱. I feel blessed to have a sister like you who fills my life with love, laughter, and countless ARGUMENT memories. May this year bring you endless happiness, success, and all the beautiful things your heart desires. Wishing you the happiest birthday ever, with lots of love from your brother 💖🎉."</p></div>
+            <div class="note"><h3>From Maa and Bapa</h3><p>"Happy Birthday, my precious girl 💖 From the day you came into our life, you filled it with love, laughter, and endless tensions😂🤣 and joy😺. Watching you grow into the amazing person you are today is my greatest blessing. Always remember, no matter how old you get, you’ll forever be my little girl. May your life be full of happiness, success, and all the love in the world. Love you always, my daughter!"</p></div>
+            <div class="note"><h3>From Cousins</h3><p>Happy Birthday to my precious daughter 💖 From the day you came into my life, you filled it with joy, pride, and endless love. Watching you grow into the wonderful person you are today is the greatest gift of my life. Always remember, no matter how old you get, you’ll forever be my little girl. May your life be filled with happiness, success, and all the love in the world. Love you always.”</p></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <textarea id="newNote" placeholder="Write a lovely note..." style="width:100%;min-height:80px;border-radius:10px;padding:12px;border:1px solid rgba(43,6,90,0.05);resize:vertical"></textarea>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button id="addNoteBtn" class="glitter-btn">Add Note</button>
+              <button id="clearNotesBtn" style="padding:10px 14px;border-radius:10px;border:none;background:transparent;cursor:pointer">Clear Notes</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Page 4 - Memories / Timeline -->
+        <section id="page-4" class="page" aria-labelledby="memories-title">
+          <h2 id="memories-title" style="font-family:'Great Vibes',cursive;font-size:36px;margin-top:0">Memories & Timeline 🕰</h2>
+          <div class="timeline" style="margin-top:12px">
+            <div class="event"><div class="dot"></div><div class="body"><strong>2007 — The Beginning</strong><p>When I was born, I didn’t know how you were. But now I know that you are really good.😊❤️</p></div></div>
+            <div class="event"><div class="dot"></div><div class="body"><strong>2013 — 5th Standard</strong><p>I think in 2013, I hit your head and broke it.😂</p></div></div>
+            <div class="event"><div class="dot"></div><div class="body"><strong>2014 — Beating memories</strong><p>In 2014, when we both played togeather,at that time you hit my teeth with your legs and broke it.😭😤Bilei 😂😺Bilei😺😺</p></div></div>
+            <div class="event"><div class="dot"></div><div class="body"><strong>2025 — Qualification</strong><p>You crossed another milestone with poise and style. Proud day!God Bless you for your next Journey.😊❤️</p></div></div>
+          </div>
+        </section>
+
+        <!-- Page 5 - Fun & Games -->
+        <section id="page-5" class="page" aria-labelledby="fun-title">
+          <h2 id="fun-title" style="font-family:'Great Vibes',cursive;font-size:36px;margin-top:0">Fun & Games 🎲</h2>
+          <p>Mini games and silly things to make Didi giggle.</p>
+          <div class="fun-grid" style="margin-top:12px">
+            <div class="card-fun">
+              <h3 style="margin:0;font-family:'Montserrat',sans-serif">Compliment Spinner</h3>
+              <p id="spinCompliment" style="margin:6px 0 0 0;font-weight:600">Click to spin a compliment</p>
+              <button id="spinBtn" class="glitter-btn" style="margin-top:8px">Spin</button>
+            </div>
+            <div class="card-fun">
+              <h3 style="margin:0;font-family:'Montserrat',sans-serif">Emoji Mixer</h3>
+              <p id="emojiMix" style="margin:6px 0 0 0;font-size:20px">✨ 🎂 💐</p>
+              <button id="mixBtn" class="glitter-btn" style="margin-top:8px">Mix</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Page 6 - Final Glitter Page -->
+        <section id="page-6" class="page" aria-labelledby="final-title">
+          <div class="final-cta">
+            <h2 id="final-title" style="font-family:'Great Vibes',cursive;font-size:38px;margin:0">Sprinkle Glitters & Hearts ✨💖</h2>
+            <canvas id="sparkleCanvas" aria-label="Glitter canvas"></canvas>
+            <div style="display:flex;gap:10px">
+              <button id="sprinkleBtn" class="glitter-btn">Sprinkle Glitters</button>
+              <button id="heartsBtn" class="glitter-btn" style="background:linear-gradient(90deg,var(--accent),var(--lavender));">Release Hearts</button>
+              <button id="clearCanvasBtn" style="padding:10px 14px;border-radius:10px;border:none;background:transparent;cursor:pointer">Clear</button>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <div style="font-size:13px">Made with ❤ for Didi — enjoy your special day!</div>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    /* ----------------------------------------
+       Utility & Navigation
+       ---------------------------------------- */
+
+    // Delegated navigation: any element with data-target
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-target]');
+      if (!btn) return;
+      const target = btn.dataset.target;
+      if (target) showPage(target);
+    });
+
+    const navButtons = Array.from(document.querySelectorAll('.nav-buttons button'));
+
+    function setActiveNav(targetId) {
+      navButtons.forEach(b => {
+        if (b.dataset.target === targetId) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+    }
+
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active')});
+      const el = document.getElementById(id);
+      if(el){
+        el.classList.add('active');
+        setActiveNav(id);
+        // scroll card into view for small screens
+        window.scrollTo({top:0,behavior:'smooth'});
+        // when showing canvas page, ensure crisp resize
+        if (id === 'page-6') {
+          setTimeout(resizeCanvas, 120);
+        }
+      }
+    }
+
+    // helper used by the wish "See Photos" button
+    const seePhotosBtn = document.getElementById('seePhotosFromWish');
+    if (seePhotosBtn) seePhotosBtn.addEventListener('click', ()=> showPage('page-2'));
+
+    /* ----------------------------------------
+       Image modal (click to enlarge)
+       ---------------------------------------- */
+    const imgModal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    function openModal(src){
+      if(!imgModal) return;
+      modalImg.src = src || '';
+      imgModal.classList.add('open');
+      imgModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      if(!imgModal) return;
+      imgModal.classList.remove('open');
+      imgModal.setAttribute('aria-hidden','true');
+      modalImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // attach listeners to existing photos
+    document.querySelectorAll('.photo img').forEach(img=>{
+      img.addEventListener('click', (e)=> openModal(e.target.src));
+    });
+    // close modal handlers
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (imgModal) {
+      imgModal.addEventListener('click', (e)=>{ if(e.target === imgModal) closeModal(); });
+    }
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+    /* ----------------------------------------
+       Notes interactive: add & clear (only user-added notes are removed)
+       ---------------------------------------- */
+    const addNoteBtn = document.getElementById('addNoteBtn');
+    const clearNotesBtn = document.getElementById('clearNotesBtn');
+
+    if (addNoteBtn) addNoteBtn.addEventListener('click', addNote);
+    if (clearNotesBtn) clearNotesBtn.addEventListener('click', clearNotes);
+
+    function addNote(){
+      const txt = document.getElementById('newNote');
+      if(!txt) return;
+      if(!txt.value.trim()) return alert('Write something sweet!');
+      const notes = document.querySelector('.notes');
+      if(!notes) return;
+      const div = document.createElement('div');
+      div.className='note user-note';
+      // escape user input
+      div.innerHTML = `<h3>You</h3><p>${escapeHtml(txt.value)}</p>`;
+      notes.prepend(div);
+      txt.value='';
+    }
+    function clearNotes(){
+      if(!confirm('Clear all added notes?')) return;
+      document.querySelectorAll('.notes .user-note').forEach(n=>n.remove());
+    }
+
+    // safe escape for note content
+    function escapeHtml(unsafe){
+      if(typeof unsafe !== 'string') return '';
+      return unsafe.replace(/[&<>"']/g, function(m){
+        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'})[m];
+      });
+    }
+
+    /* ----------------------------------------
+       Fun & Games: compliments and emoji mix
+       ---------------------------------------- */
+    const compliments = [
+      'You light up every room you enter.',
+      'Your smile is my favorite sight.',
+      'You make ordinary days extraordinary.',
+      'Kind, brave, and brilliantly you.'
+    ];
+    const spinBtn = document.getElementById('spinBtn');
+    if (spinBtn) spinBtn.addEventListener('click', spinCompliment);
+    function spinCompliment(){
+      const i = Math.floor(Math.random()*compliments.length);
+      const el = document.getElementById('spinCompliment');
+      if(el) el.textContent = compliments[i];
+    }
+
+    const emojis = ['✨','🎂','💐','🌸','💖','🎈','🌟','🍰','🩷'];
+    const mixBtn = document.getElementById('mixBtn');
+    if (mixBtn) mixBtn.addEventListener('click', mixEmoji);
+    function mixEmoji(){
+      const out = [];
+      for(let i=0;i<3;i++) out.push(emojis[Math.floor(Math.random()*emojis.length)]); 
+      document.getElementById('emojiMix').textContent = out.join(' ');
+    }
+
+    /* ----------------------------------------
+       Sparkle + hearts animation on canvas (fixed)
+       ---------------------------------------- */
+    const canvas = document.getElementById('sparkleCanvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+    let DPR = window.devicePixelRatio || 1;
+    let canvasRect = {width: 0, height: 0};
+
+    function resizeCanvas(){
+      if(!canvas || !ctx) return;
+      DPR = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvasRect.width = rect.width;
+      canvasRect.height = rect.height;
+      // set backing store size
+      canvas.width = Math.max(1, Math.floor(rect.width * DPR));
+      canvas.height = Math.max(1, Math.floor(rect.height * DPR));
+      // allow drawing in CSS pixels (scale)
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      // clear in CSS pixels
+      ctx.clearRect(0,0,rect.width, rect.height);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('load', resizeCanvas);
+
+    // particle system
+    const particles = [];
+    function Particle(x,y,opts={}){
+      opts = opts || {};
+      const speed = typeof opts.speed === 'number' ? opts.speed : (3 + Math.random()*2);
+      this.x = x;
+      this.y = y;
+      // horizontal random velocity
+      this.vx = (Math.random() - 0.5) * speed * 1.2;
+      // upward initial velocity (negative), will be influenced by gravity
+      this.vy = - (Math.random() * speed + 1.2);
+      this.life = opts.life || (40 + Math.floor(Math.random()*60));
+      this.size = opts.size || (4 + Math.random()*6);
+      this.color = opts.color || 'rgba(255,200,200,0.95)';
+      this.type = opts.type || 'spark';
+      this.age = 0;
+      this.spin = Math.random()*6-3;
+    }
+    Particle.prototype.update = function(){
+      this.x += this.vx;
+      this.y += this.vy;
+      // gravity
+      this.vy += 0.06;
+      this.age++;
+    };
+    Particle.prototype.draw = function(ctx){
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate((this.spin) * (this.age/30));
+      const alpha = Math.max(0, 1 - (this.age / this.life));
+      if(this.type === 'heart'){
+        ctx.globalAlpha = alpha;
+        drawHeart(ctx, 0, 0, this.size, this.color);
+      } else {
+        ctx.beginPath();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 12;
+        ctx.arc(0,0,this.size,0,Math.PI*2);
+        ctx.fill();
+      }
+      ctx.restore();
+    };
+
+    function drawHeart(ctx,x,y,size,color){
+      ctx.save();
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      // scale so 'size' controls final heart size
+      const s = size / 12;
+      ctx.translate(x, y);
+      ctx.scale(s, s);
+      ctx.moveTo(0,0);
+      ctx.bezierCurveTo(0,-16, -12,-22, -24,-12);
+      ctx.bezierCurveTo(-36,0,-12,24,0,38);
+      ctx.bezierCurveTo(12,24,36,0,24,-12);
+      ctx.bezierCurveTo(12,-22,0,-16,0,0);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function spawnSprinkle(x,y,count=25){
+      for(let i=0;i<count;i++){
+        const c = ['rgba(255,143,177,0.95)','rgba(255,209,102,0.95)','rgba(214,240,255,0.98)','rgba(233,215,255,0.98)'][Math.floor(Math.random()*4)];
+        const p = new Particle(
+          x + (Math.random()-0.5) * 40,
+          y + (Math.random()-0.5) * 20,
+          { speed: 3 + Math.random()*2, life: 40 + Math.random()*40, size: 3 + Math.random()*6, color: c, type:'spark' }
+        );
+        particles.push(p);
+      }
+    }
+    function spawnHearts(x,y,count=8){
+      for(let i=0;i<count;i++){
+        const c = ['rgba(255,90,150,0.95)','rgba(255,140,180,0.95)','rgba(255,80,120,0.95)'][Math.floor(Math.random()*3)];
+        const p = new Particle(
+          x + (Math.random()-0.5) * 80,
+          y + (Math.random()-0.5) * 30,
+          { speed: 2 + Math.random()*2, life: 60 + Math.random()*40, size: 10 + Math.random()*12, color: c, type: 'heart' }
+        );
+        particles.push(p);
+      }
+    }
+
+    let lastFrameTime = performance.now();
+    function animate(now){
+      if(!ctx || !canvas) return;
+      // throttle a tiny bit
+      const dt = now - lastFrameTime;
+      lastFrameTime = now;
+
+      // clear using CSS pixels (because we've scaled the context)
+      ctx.clearRect(0,0, canvasRect.width || canvas.width/DPR, canvasRect.height || canvas.height/DPR);
+
+      for(let i=particles.length-1;i>=0;i--){
+        const p = particles[i];
+        p.update();
+        p.draw(ctx);
+        if(p.age > p.life) particles.splice(i,1);
+      }
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    // hook buttons
+    const sprinkleBtn = document.getElementById('sprinkleBtn');
+    const heartsBtn = document.getElementById('heartsBtn');
+    const clearCanvasBtn = document.getElementById('clearCanvasBtn');
+
+    if (sprinkleBtn) sprinkleBtn.addEventListener('click', ()=>{
+      if(!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = Math.random() * (rect.width - 40) + 20;
+      const y = Math.random() * (rect.height - 40) + 20;
+      spawnSprinkle(x, y, 40);
+    });
+
+    if (heartsBtn) heartsBtn.addEventListener('click', ()=>{
+      if(!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = rect.width / 2;
+      const y = rect.height / 2;
+      spawnHearts(x, y, 12);
+    });
+
+    if (clearCanvasBtn) clearCanvasBtn.addEventListener('click', clearCanvas);
+
+    // click sprinkle across canvas
+    if (canvas) {
+      canvas.addEventListener('click', (e)=>{
+        const r = canvas.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        spawnSprinkle(x, y, 30);
+      });
+    }
+
+    function clearCanvas(){
+      particles.splice(0,particles.length);
+      if (ctx && canvasRect.width) ctx.clearRect(0,0, canvasRect.width, canvasRect.height);
+    }
+
+    // Ensure canvas resizes when switching to page-6 so particles look crisp
+    document.querySelectorAll('[data-target="page-6"]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        setTimeout(()=>{ resizeCanvas(); }, 120);
+      });
+    });
+
+    /* ----------------------------------------
+       Small floating hearts in main area (visual only)
+       ---------------------------------------- */
+    const mainArea = document.querySelector('.main');
+    if (mainArea) {
+      for(let i=0;i<5;i++){
+        const el = document.createElement('div');
+        el.className='floating-heart';
+        el.style.right = (20 + i*12)+'px';
+        el.style.top = (40 + i*80)+'px';
+        el.innerHTML = '💗';
+        el.style.fontSize = (18+ i*6)+'px';
+        el.style.opacity = 0.7 - i*0.08;
+        mainArea.appendChild(el);
+      }
+    }
+
+    /* ----------------------------------------
+       Accessibility: update ARIA when modal open (close handled earlier)
+       ---------------------------------------- */
+    // (already handled in openModal/closeModal functions)
+
+  </script>
+</body>
+</html>
